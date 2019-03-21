@@ -1,0 +1,30 @@
+"""给定两个二进制字符串，返回他们的和（用二进制表示）。
+
+输入为非空字符串且只包含数字 1 和 0。
+
+示例 1:
+
+输入: a = "11", b = "1"
+输出: "100"
+示例 2:
+
+输入: a = "1010", b = "1011"
+输出: "10101"
+"""
+class Solution:
+    def addBinary(self, a: str, b: str) -> str:
+        a=int(a)
+        b=int(b)
+        
+        #把数字转为字符串，再把字符串转为列表
+        sum=list(map(str,str(a+b)))
+        for i in range(len(sum)-1,0,-1):
+            if int(sum[i])>=2:
+                sum[i]=str(int(sum[i])-2)
+                sum[i-1]=str(int(sum[i-1])+1)
+        if int(sum[0])>=2:
+            sum[0]=str(int(sum[0])-2)
+            sum.insert(0,'1')
+           #把列表转为字符串 
+        return ''.join(sum)
+                
